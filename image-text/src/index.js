@@ -1,61 +1,54 @@
-const content = [
-  [
-    "React is extremely popular",
-    "It makes building complex, interactive UIs a breeze",
-    "It's powerful & flexible",
-    "It has a very active and versatile ecosystem",
-  ],
-  [
-    "Components, JSX & Props",
-    "State",
-    "Hooks (e.g., useEffect())",
-    "Dynamic rendering",
-  ],
-  [
-    "Official web page (react.dev)",
-    "Next.js (Fullstack framework)",
-    "React Native (build native mobile apps with React)",
-  ],
-];
+class CustomContent extends HTMLElement {
+  constructor() {
+    super();
 
-const btnWhyReact = document.getElementById("btn-why-react");
-const btnCoreFeature = document.getElementById("btn-core-features");
-const btnResources = document.getElementById("btn-resources");
-const tabContent = document.getElementById("tab-content");
+    const content = this.innerHTML;
 
-function displayContent(items) {
-  let listContent = "";
-  for (const item of items) {
-    listContent += `<li>${item}</li>`;
+    this.innerHTML = "";
+
+    const container = document.createElement("div");
+    container.classList.add("content");
+
+    container.innerHTML = content;
+
+    this.appendChild(container);
+
+    this.setupToggle();
+
+    this.setupIntersectionObserver();
   }
-  const list = document.createElement("ul");
-  tabContent.innerHTML = ""; // clear existing content
-  list.innerHTML = listContent; // insert new content
-  tabContent.append(list);
-}
 
-function highlightButton(btn) {
-  // Clear all existing styling / highlights
-  btnWhyReact.className = "";
-  btnCoreFeature.className = "";
-  btnResources.className = "";
-  btn.className = "active"; // set new style / highlight
-}
+  setupToggle() {
+    const button = this.querySelector(".content__button");
+    const text = this.querySelector(".content__extra-text");
 
-function handleClick(event) {
-  const btnId = event.target.id;
-  highlightButton(event.target);
-  if (btnId === "btn-why-react") {
-    displayContent(content[0]);
-  } else if (btnId === "btn-core-features") {
-    displayContent(content[1]);
-  } else {
-    displayContent(content[2]);
+    if (button && text) {
+      button.addEventListener("click", () => {
+        text.classList.toggle("content__extra-text--visible");
+      });
+    }
+  }
+
+  setupIntersectionObserver() {
+    const contentDiv = this.querySelector(".content");
+
+    if (contentDiv) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              contentDiv.classList.add("content--visible");
+            } else {
+              contentDiv.classList.remove("content--visible");
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      observer.observe(contentDiv);
+    }
   }
 }
 
-displayContent(content[0]); // initially show this content
-
-btnWhyReact.addEventListener("click", handleClick);
-btnCoreFeature.addEventListener("click", handleClick);
-btnResources.addEventListener("click", handleClick);
+customElements.define("custom-content", CustomContent);

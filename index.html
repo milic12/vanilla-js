@@ -1,4 +1,64 @@
 <!DOCTYPE html>
+<style>
+  body {
+    height: 100vh;
+  }
+
+  .button-contaier {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+  }
+
+  button {
+    --border: 5px;
+    --slant: 0.7em;
+    --color: #37e8fc;
+
+    font-size: 35px;
+    padding: 0.4em 1.2em;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--color);
+    background: linear-gradient(to bottom left, var(--color) 50%, #0000 50.1%)
+        top right,
+      linear-gradient(to top right, var(--color) 50%, #0000 50.1%) bottom left;
+    background-size: calc(var(--slant) + 1.3 * var(--border))
+      calc(var(--slant) + 1.3 * var(--border));
+    background-repeat: no-repeat;
+    box-shadow: 0 0 0 200px inset var(--s, #0000),
+      0 0 0 var(--border) inset var(--color);
+    clip-path: polygon(
+      0 0,
+      calc(100% - var(--slant)) 0,
+      100% var(--slant),
+      100% 100%,
+      var(--slant) 100%,
+      0 calc(100% - var(--slant))
+    );
+    transition: color var(--t, 0.3s), background-size 0.3s;
+  }
+
+  button:focus-visible {
+    outline-offset: calc(-1 * var(--border));
+    outline: var(--border) solid #000c;
+    clip-path: none;
+    background-size: 0 0;
+  }
+  button:hover,
+  button:active {
+    background-size: 100% 100%;
+    color: #fff;
+    --t: 0.2s 0.1s;
+  }
+  button:active {
+    --s: #0005;
+    transition: none;
+  }
+</style>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,13 +66,24 @@
     <title>Outer HTML</title>
   </head>
   <body>
-    <button id="taskOneButton">Task one</button>
+    <h1>Hi there!</h1>
+
+    <div class="button-contaier">
+      <button id="taskOneButton">1.Image + Text</button>
+      <button id="taskSecondButton">2.Blog showcase</button>
+    </div>
 
     <script>
       document
         .getElementById("taskOneButton")
         .addEventListener("click", function () {
           window.location.href = "image-text/src/index.html";
+        });
+
+      document
+        .getElementById("taskSecondButton")
+        .addEventListener("click", function () {
+          window.location.href = "blog/src/index.html";
         });
     </script>
   </body>
