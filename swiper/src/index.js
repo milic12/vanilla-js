@@ -21,7 +21,7 @@ class Carousel extends HTMLElement {
                 ${originalContent}
               </div>
               <div class="custom-button-prev">
-                <img src="../images/Arrowleft.svg" alt="Arrow left" />
+                <img src="../images/ArrowLeft.svg" alt="Arrow left" />
               </div>
               <div class="custom-button-next">
                 <img src="../images/ArrowRight.svg" alt="Arrow right" />
