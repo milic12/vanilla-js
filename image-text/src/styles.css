@@ -57,6 +57,7 @@ body {
   min-width: 320px;
   background-color: #e3cfcf;
   padding: 119.5px 104px;
+  position: relative;
 }
 
 @media only screen and (max-width: 768px) {
@@ -71,6 +72,7 @@ body {
   font-weight: 300;
   margin-bottom: 15px;
   text-align: center;
+  margin: 0;
 }
 
 @media only screen and (max-width: 768px) {
@@ -105,33 +107,41 @@ body {
   background-color: transparent;
 }
 
+.content__button--hidden {
+  opacity: 0;
+}
+
 .content__extra-text {
   position: absolute;
+  right: 0;
+  left: 0;
   bottom: 30px;
   opacity: 0;
   height: 0;
+  padding: 0 104px;
   overflow: hidden;
   transition: opacity 0.5s ease, height 0s 0.5s;
 }
 
 .content__extra-text--visible {
   position: absolute;
-  bottom: 30px;
+  right: 0;
+  left: 0;
+  bottom: 0px;
   opacity: 1;
   height: auto;
+  padding: 0 104px;
   transition: opacity 0.5s ease;
 }
 
 @media only screen and (max-width: 768px) {
   .content__extra-text {
-    left: 0;
-    right: 0;
-    bottom: 0px;
+    position: relative;
+    padding: 0 16px;
   }
 
   .content__extra-text--visible {
-    left: 0;
-    right: 0;
-    bottom: 0px;
+    position: relative;
+    padding: 0 16px;
   }
 }

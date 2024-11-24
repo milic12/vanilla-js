@@ -25,6 +25,7 @@ class CustomContent extends HTMLElement {
     if (button && text) {
       button.addEventListener("click", () => {
         text.classList.toggle("content__extra-text--visible");
+        button.classList.toggle("content__button--hidden");
       });
     }
   }
