@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <style>
   body {
-    height: 100vh;
+    height: 100%;
+    background-color: #1e1e1e;
   }
 
   .button-contaier {
@@ -58,6 +59,11 @@
     --s: #0005;
     transition: none;
   }
+  .title {
+    display: flex;
+    justify-content: center;
+    color: white;
+  }
 </style>
 <html lang="en">
   <head>
@@ -66,12 +72,13 @@
     <title>Outer HTML</title>
   </head>
   <body>
-    <h1>Hi there!</h1>
+    <h1 class="title">Hi there! 👋</h1>
 
     <div class="button-contaier">
       <button id="taskOneButton">1.Image + Text</button>
       <button id="taskSecondButton">2.Blog showcase</button>
       <button id="taskThirdButton">3.Simple swiper</button>
+      <button id="taskForthButton">4.Schema</button>
     </div>
 
     <script>
@@ -91,6 +98,12 @@
         .getElementById("taskThirdButton")
         .addEventListener("click", function () {
           window.location.href = "swiper/src/index.html";
+        });
+
+      document
+        .getElementById("taskForthButton")
+        .addEventListener("click", function () {
+          window.location.href = "schema/src/index.html";
         });
     </script>
   </body>
