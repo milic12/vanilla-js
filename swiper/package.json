@@ -1,0 +1,16 @@
+{
+  "name": "swiper",
+  "version": "1.0.0",
+  "description": "swiper api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d src"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gh-pages": "^6.2.0",
+    "swiper": "^11.1.15"
+  }
+}
