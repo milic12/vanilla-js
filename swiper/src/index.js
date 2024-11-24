@@ -9,19 +9,26 @@ class Carousel extends HTMLElement {
     const loop = this.getAttribute("loop") === "true";
     const delay = parseInt(this.getAttribute("delay"), 10) || 3000;
 
+    const originalContent = this.innerHTML;
+
     this.innerHTML = `
-        <div class="swiper">
-          <div class="swiper-wrapper">
-            ${this.innerHTML}
+          <div class="carousel-container">
+            <div class="carousel-loader">
+              <div class="loader-spinner"></div>
+            </div>
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                ${originalContent}
+              </div>
+              <div class="custom-button-prev">
+                <img src="../images/Arrowleft.svg" alt="Arrow left" />
+              </div>
+              <div class="custom-button-next">
+                <img src="../images/ArrowRight.svg" alt="Arrow right" />
+              </div>
+            </div>
           </div>
-          <div class="custom-button-prev">
-          <img src="../images/Arrowleft.svg" alt="Arrow left" />
-          </div>
-          <div class="custom-button-next">
-            <img src="../images/ArrowRight.svg" alt="Arrow right" />
-          </div>
-        </div>
-      `;
+        `;
 
     this.swiper = new Swiper(this.querySelector(".swiper"), {
       slidesPerView: 3,
@@ -43,10 +50,22 @@ class Carousel extends HTMLElement {
           slidesPerView: 1,
           spaceBetween: 8,
         },
-
         768: {
           slidesPerView: 3,
           spaceBetween: 8,
+        },
+      },
+      on: {
+        init: () => {
+          const loader = this.querySelector(".carousel-loader");
+          const swiperElement = this.querySelector(".swiper");
+
+          loader.style.opacity = "0";
+          swiperElement.style.opacity = "1";
+
+          setTimeout(() => {
+            loader.style.display = "none";
+          }, 300);
         },
       },
     });

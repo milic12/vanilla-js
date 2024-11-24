@@ -10,6 +10,10 @@ body {
   }
 }
 
+.carousel-container {
+  position: relative;
+}
+
 .swiper {
   max-width: 1440px;
   height: 585px;
@@ -80,4 +84,41 @@ body {
 .swiper-button-next,
 .swiper-button-prev {
   display: none;
+}
+
+.carousel-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.loader-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.swiper {
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
